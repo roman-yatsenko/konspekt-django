@@ -1,0 +1,17 @@
+{% extends "konspekt/base.html" %}
+
+{% block content %}
+  <h2>Тема:  {{ topic }}</h2>
+
+  <h3>Нотатки:</h3>
+  <ul>
+    {% for note in notes %}
+      <li>
+        <p>{{ note.date_added|date:"d.m.Y H:i" }}</p>
+        <p>{{ note.text|linebreaks }}</p>
+      </li>
+    {% empty %}
+      <li>До теми ще не додано нотаток.</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

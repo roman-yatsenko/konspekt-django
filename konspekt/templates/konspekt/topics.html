@@ -1,10 +1,12 @@
 {% extends "konspekt/base.html" %}
 
 {% block content %}
-  <p>Теми</p>
+  <h2>Теми</h2>
   <ul>
     {% for topic in topics %}
-      <li>{{ topic }}</li>
+      <li>
+        <a href="{% url 'konspekt:topic' topic.id %}">{{ topic }}</a>
+      </li>
     {% empty %}
       <li>Жодної теми ще не було додано.</li>
     {% endfor %}
