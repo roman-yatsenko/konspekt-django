@@ -1,0 +1,12 @@
+{% extends "konspekt/base.html" %}
+
+{% block content %}
+  <p>Теми</p>
+  <ul>
+    {% for topic in topics %}
+      <li>{{ topic }}</li>
+    {% empty %}
+      <li>Жодної теми ще не було додано.</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}
