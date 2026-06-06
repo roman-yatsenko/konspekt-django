@@ -1,0 +1,11 @@
+{% extends "konspekt/base.html" %}
+
+{% block content %}
+  <h2>Нова тема</h2>
+
+  <form action="{% url 'konspekt:new_topic' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Додати тему</button>
+  </form>
+{% endblock content %}
