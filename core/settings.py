@@ -124,3 +124,4 @@ STATIC_URL = 'static/'
 # Налаштування проєкту
 
 LOGIN_REDIRECT_URL = 'konspekt:index'
+LOGOUT_REDIRECT_URL = 'konspekt:index'

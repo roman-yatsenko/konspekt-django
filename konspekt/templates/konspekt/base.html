@@ -15,6 +15,15 @@
       <a href="{% url 'accounts:login' %}">Вхід</a>
     {% endif %}
   </h1>
+
   {% block content %}{% endblock  %}
+
+  {% if user.is_authenticated %}
+    <hr>
+    <form action="{% url "accounts:logout" %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Вихід</button>
+    </form>
+  {% endif %}
 </body>
 </html>
