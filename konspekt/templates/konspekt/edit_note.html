@@ -1,0 +1,14 @@
+{% extends "konspekt/base.html" %}
+
+{% block content %}
+  <h2>
+    <a href="{% url 'konspekt:topic' topic.id %}">{{ topic }}</a>
+  </h2>
+
+  <h3>Редагування нотатки</h3>
+  <form action="{% url 'konspekt:edit_note' note.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Зберегти нотатку</button>
+  </form>
+{% endblock content %}

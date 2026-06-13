@@ -12,6 +12,9 @@
       <li>
         <p>{{ note.date_added|date:"d.m.Y H:i" }}</p>
         <p>{{ note.text|linebreaks }}</p>
+        <p>
+          <a href="{% url 'konspekt:edit_note' note.id %}">Змінити нотатку</a>
+        </p>
       </li>
     {% empty %}
       <li>До теми ще не додано нотаток.</li>

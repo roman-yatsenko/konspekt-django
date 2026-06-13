@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from flet import context
 
 from .forms import TopicForm, NoteForm
-from .models import Topic
+from .models import Topic, Note
 
 def index(request):
     """Головна сторінка застосунку"""
@@ -53,3 +53,23 @@ def new_note(request, topic_id):
         'form': form
     }
     return render(request, 'konspekt/new_note.html', context)
+
+def edit_note(request, note_id):
+    """Редагує існуючу нотатку"""
+    note = Note.objects.get(id=note_id)
+    topic = note.topic
+
+    if request.method != 'POST':
+        form = NoteForm(instance=note)
+    else:
+        form = NoteForm(instance=note, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('konspekt:topic', topic_id=topic.id)
+
+    context = {
+        'note': note,
+        'topic': topic,
+        'form': form
+    }
+    return render(request, 'konspekt/edit_note.html', context)
