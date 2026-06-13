@@ -12,4 +12,6 @@ urlpatterns = [
     path('topics/<int:topic_id>/', views.topic, name='topic'),
     # Сторінка для додавання нової теми
     path('new_topic/', views.new_topic, name='new_topic'),
+    # Сторінка для довання нової нотатки
+    path('new_note/<int:topic_id>/', views.new_note, name='new_note'),
 ]

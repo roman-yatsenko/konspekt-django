@@ -4,6 +4,9 @@
   <h2>Тема:  {{ topic }}</h2>
 
   <h3>Нотатки:</h3>
+  <p>
+    <a href="{% url 'konspekt:new_note' topic.id %}">Додати нову нотатку</a>
+  </p>
   <ul>
     {% for note in notes %}
       <li>

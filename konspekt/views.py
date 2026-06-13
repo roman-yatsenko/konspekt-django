@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from flet import context
 
-from .forms import TopicForm
+from .forms import TopicForm, NoteForm
 from .models import Topic
 
 def index(request):
@@ -32,3 +33,23 @@ def new_topic(request):
 
     context = {'form': form}
     return render(request, 'konspekt/new_topic.html', context)
+
+def new_note(request, topic_id):
+    """Додає новий допис до певної теми"""
+    topic = Topic.objects.get(id=topic_id)
+
+    if request.method != 'POST':
+        form = NoteForm()
+    else:
+        form = NoteForm(data=request.POST)
+        if form.is_valid():
+            new_note = form.save(commit=False)
+            new_note.topic = topic
+            new_note.save()
+            return redirect('konspekt:topic', topic_id=topic_id)
+
+    context = {
+        'topic': topic,
+        'form': form
+    }
+    return render(request, 'konspekt/new_note.html', context)
